@@ -281,7 +281,7 @@ void	f1(int y, float origDist, float dist, float2 d) {
 }
 
 void	f0(float alpha) {
-	float ldistPlane = 1.8f;
+	float ldistPlane = 1.f;
 	float screenLen = tanf(alpha / 2.f) * ldistPlane;
 	float segmentLen = screenLen / (H / 2.f);
 
