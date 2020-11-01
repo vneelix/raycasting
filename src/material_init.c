@@ -42,6 +42,7 @@ static int	texture_load(t_storage *texture_storage)
 		if (surface_load(&((t_texture*)texture_storage->data)[i].sfe,
 											path, SDL_PIXELFORMAT_BGRA32))
 		{
+			printf("%s: load failure\n", path);
 			free(path);
 			return (-1);
 		}
@@ -56,8 +57,10 @@ static int	texture_init(t_engine *engine)
 	uint32_t	i;
 
 	if (ft_read_directory("materials/textures/",
-		&engine->texture_storage.title, &engine->texture_storage.size) == -1)
+		&engine->texture_storage.title, &engine->texture_storage.size) == -1) {
+		printf("Readdir materials/textures/ failure\n");
 		return (-1);
+	}
 	if (texture_load(&engine->texture_storage) == -1)
 		return (-1);
 	i = 0;
@@ -78,8 +81,5 @@ int			material_init(t_engine *engine)
 {
 	if (texture_init(engine) == -1)
 		return (-1);
-	if (engine->nswe)
-		if (remove_it_nswe_init(engine))
-			return (-1);
 	return (0);
 }

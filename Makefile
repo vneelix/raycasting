@@ -20,14 +20,9 @@ SRC_DIR = ./src
 INC_DIR = .
 OBJ_DIR = ./obj
 
-SDL2_DIR = SDL2_framework
-SDL2_BIN_DIR = $(SDL2_DIR)/local/bin
-SDL2_LIB_DIR = $(SDL2_DIR)/local/lib
-SDL2_INC_DIR = $(SDL2_DIR)/local/include
-
 SRCS = $(SRC_DIR)/func.c $(SRC_DIR)/geometry_init.c $(SRC_DIR)/intersection2.c						\
 	$(SRC_DIR)/intersection.c $(SRC_DIR)/io_init.c $(SRC_DIR)/main.c $(SRC_DIR)/material_init.c		\
-	$(SRC_DIR)/quit.c $(SRC_DIR)/remove_it_nswe.c $(SRC_DIR)/renderer.c $(SRC_DIR)/renderer_func.c	\
+	$(SRC_DIR)/quit.c $(SRC_DIR)/renderer.c $(SRC_DIR)/renderer_func.c								\
 	$(SRC_DIR)/vec_op.c
 
 INCS = $(INC_DIR)/wolf3d.h
@@ -56,12 +51,12 @@ PARSER_INCS = 	$(PARSER_DIR)/instruments.h		\
 
 PARSER_OBJS = $(patsubst $(PARSER_DIR)/%,$(OBJ_DIR)/%,$(PARSER_SRC:.c=.o))
 
-INCL = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(PARSER_DIR) -I$(SDL2_INC_DIR)
+INCL = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(PARSER_DIR)
 
 NAME = wolf3d
 
 CC = clang
-LIBS = -lSDL2_image
+LIBS = -lm -lSDL2 -lSDL2_image
 CCFL = -Wall -Werror -Wextra -O2
 
 .PHONY: all clean fclean re
@@ -71,7 +66,7 @@ all: $(SDL2_DIR) $(NAME)
 $(NAME): $(OBJ) $(PARSER_OBJS) $(LIBFT_OBJS)
 	@printf "$(COLOR_GREEN)Compiled successfully$(COLOR_NONE)\n"
 	@printf "$(COLOR_GREEN)Linking...$(COLOR_NONE)\n"
-	@$(CC) $(CCFL) $(OBJ) $(LIBFT_OBJS) $(PARSER_OBJS) $$($(SDL2_BIN_DIR)/sdl2-config --static-libs) $(LIBS) -o $(NAME)
+	@$(CC) $(CCFL) $(OBJ) $(LIBFT_OBJS) $(PARSER_OBJS) $(LIBS) -o $(NAME)
 	@printf "$(COLOR_GREEN)Built successfully$(COLOR_NONE)\n"
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c $(INCS)
@@ -94,10 +89,5 @@ clean:
 fclean: clean
 	@printf "$(COLOR_GREEN)Cleaning executable...$(COLOR_NONE)\n"
 	@/bin/rm -f $(NAME)
-	@/bin/rm -rf SDL2_framework
 
 re: fclean all
-
-$(SDL2_DIR):
-	@unzip -n SDL2_framework
-	cd SDL2_framework && ./config

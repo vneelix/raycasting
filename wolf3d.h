@@ -16,6 +16,8 @@
 # include "parser.h"
 # include "minilibft.h"
 
+# include <stdio.h>
+
 # include <math.h>
 # include <stdlib.h>
 # include <SDL2/SDL.h>
@@ -100,12 +102,6 @@ typedef struct	s_engine {
 	t_double2		hor_point[H / 2];
 
 	int				collision;
-
-	int				nswe;
-	t_texture		north;
-	t_texture		south;
-	t_texture		west;
-	t_texture		east;
 }				t_engine;
 
 /*

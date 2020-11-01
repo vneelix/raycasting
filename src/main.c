@@ -102,23 +102,14 @@ int	loop(t_engine *engine)
 
 int	main(int argc, char **argv)
 {
-	int			nswe;
 	t_map		*map;
 	t_engine	*engine;
 
-	nswe = 0;
-	ft_assert(argc >= 2 && argc <= 3, "usage: wolf3d file [-s]");
-	if (argc == 3)
-	{
-		ft_assert(ft_strlen(argv[2]) == 2 && argv[2][0] == '-'
-				&& argv[2][1] == 's', "usage: wolf3d file [-s]");
-		nswe = 1;
-	}
+	ft_assert(argc == 2, "usage: wolf3d file");
 	map = parser(argv[1]);
 	if ((engine = ft_memalloc(sizeof(t_engine))) == NULL)
 		exit(0);
 	engine->map = map;
-	engine->nswe = nswe;
 	if (io_init(engine)
 			|| material_init(engine))
 		quit(engine);

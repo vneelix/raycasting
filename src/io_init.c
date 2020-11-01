@@ -16,6 +16,7 @@ static int	io_configure(t_engine *engine)
 {
 	if ((engine->sfe = SDL_GetWindowSurface(engine->win)) == NULL)
 	{
+		printf("Init window failure\n");
 		SDL_DestroyWindow(engine->win);
 		IMG_Quit();
 		SDL_Quit();
@@ -23,6 +24,7 @@ static int	io_configure(t_engine *engine)
 	}
 	if ((engine->rndr = SDL_CreateSoftwareRenderer(engine->sfe)) == NULL)
 	{
+		printf("Init window failure\n");
 		SDL_FreeSurface(engine->sfe);
 		SDL_DestroyWindow(engine->win);
 		IMG_Quit();
@@ -37,10 +39,13 @@ static int	io_configure(t_engine *engine)
 
 int			io_init(t_engine *engine)
 {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS) != 0) {
+		printf("SDL2 init failure\n");
 		return (-1);
+	}
 	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) != (IMG_INIT_JPG | IMG_INIT_PNG))
 	{
+		printf("IMG init failure\n");
 		SDL_Quit();
 		return (-1);
 	}
@@ -48,6 +53,7 @@ int			io_init(t_engine *engine)
 		"Raycasting engine", SDL_WINDOWPOS_CENTERED,
 				SDL_WINDOWPOS_CENTERED, W, H, SDL_WINDOW_SHOWN)) == NULL)
 	{
+		printf("SDL_CreateWindow failure\n");
 		IMG_Quit();
 		SDL_Quit();
 		return (-1);

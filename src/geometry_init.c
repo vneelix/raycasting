@@ -42,18 +42,16 @@ static int	textr_init(t_engine *engine, t_map *map,
 	char		*temp;
 
 	item_configure(item);
-	if (engine->nswe
-	&& !remove_it_nswe(engine, item))
-		return (0);
-	if ((temp = find_textr(map, i)) == NULL)
-	{
+	if ((temp = find_textr(map, i)) == NULL) {
 		ft_putstr("Texture not found\n");
 		return (-1);
 	}
 	if (hex_to_uint(temp, &item->color) == 0)
 		return (0);
-	if (ft_find_str(engine->texture_storage.title, temp, &index) == NULL)
+	if (ft_find_str(engine->texture_storage.title, temp, &index) == NULL) {
+		printf("%s: not found\n", temp);
 		return (-1);
+	}
 	item->texture = (t_texture*)engine->texture_storage.data + index;
 	item->r_dx = 1. / (2. / item->texture->w);
 	item->r_dy = 1. / (2. / item->texture->h);
