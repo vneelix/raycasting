@@ -6,7 +6,7 @@
 /*   By: vneelix <vneelix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 16:29:26 by vneelix           #+#    #+#             */
-/*   Updated: 2020/10/26 13:39:42 by vneelix          ###   ########.fr       */
+/*   Updated: 2020/10/30 15:04:53 by vneelix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_double2		line_line_intersect(t_double2 a, t_double2 b,
 		return ((t_double2){INFINITY, INFINITY});
 }
 
-static double	prj(t_double2 a, t_double2 b)
+double			prj(t_double2 a, t_double2 b)
 {
 	if (a.x != 0.)
 		return (b.x / a.x);

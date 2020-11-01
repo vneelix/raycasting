@@ -6,22 +6,23 @@
 /*   By: vneelix <vneelix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/03 12:09:05 by vneelix           #+#    #+#             */
-/*   Updated: 2020/10/27 12:52:10 by vneelix          ###   ########.fr       */
+/*   Updated: 2020/10/30 16:59:12 by vneelix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# include "libft.h"
+# include "parser.h"
+# include "minilibft.h"
 
 # include <math.h>
 # include <stdlib.h>
 # include <SDL2/SDL.h>
 # include <SDL2/SDL_image.h>
 
-# define W 800
-# define H 800
+# define W 1000
+# define H 1000
 
 # define RAD(DEG) ((DEG) * ((M_PI) / (180.f)))
 
@@ -60,6 +61,12 @@ typedef struct	s_item {
 	t_texture	*texture;
 }				t_item;
 
+typedef struct	s_plr {
+	t_double2	o;
+	t_double2	d;
+	double		delta;
+}				t_plr;
+
 typedef struct	s_engine {
 	SDL_Window		*win;
 	SDL_Surface		*sfe;
@@ -69,11 +76,15 @@ typedef struct	s_engine {
 	uint32_t		h;
 	uint32_t		*pixel;
 
+	t_map			*map;
+
 	t_storage		item_storage;
 	t_storage		texture_storage;
 
 	t_item			ceil;
 	t_item			floor;
+
+	t_plr			player;
 
 	double			hor_fov;
 	double			hor_angle[W];
@@ -87,23 +98,35 @@ typedef struct	s_engine {
 	double			ver_distance;
 
 	t_double2		hor_point[H / 2];
+
+	int				collision;
+
+	int				nswe;
+	t_texture		north;
+	t_texture		south;
+	t_texture		west;
+	t_texture		east;
 }				t_engine;
-
-t_texture		txr;
-t_texture		flr;
-
-t_double2		oD;
-t_double2		rD;
 
 /*
 ** intersection.c
 */
+double			prj(t_double2 a, t_double2 b);
 t_double2		line_line_intersect(t_double2 a, t_double2 b,
 										t_double2 c, t_double2 d);
 t_double2		vec_segment_intersect(t_double2 o, t_double2 d,
 										t_double2 p0, t_double2 p1);
 t_double2		find_nearest_point(t_engine *engine, t_double2 o,
 										t_double2 d, uint32_t *index);
+
+/*
+** intersection2.c
+*/
+int				collision(t_engine *engine, t_double2 o, t_double2 d);
+t_double2		point_line_projection(t_double2 p,
+										t_double2 a, t_double2 b);
+t_double2		point_segment_projection(
+						t_double2 p, t_double2 a, t_double2 b);
 
 /*
 ** renderer.c
@@ -139,14 +162,16 @@ uint32_t		color_dot_f(uint32_t color, double m);
 /*
 ** material_init.c
 */
-int				texture_load(t_storage *texture_storage);
-int				texture_init(t_engine *engine);
+int				surface_load(SDL_Surface **dest,
+								const char *path, Uint32 format);
 int				material_init(t_engine *engine);
-
-int				ft_read_directory(const char *directory,
-					void *addr_double_ptr, uint32_t *number);
 
 int				io_init(t_engine *engine);
 int				quit(t_engine *engine);
+int				geometry_init(t_engine *engine, t_map *map);
+int				release_map(t_map *map);
+
+int				remove_it_nswe_init(t_engine *engine);
+int				remove_it_nswe(t_engine *engine, t_item *item);
 
 #endif

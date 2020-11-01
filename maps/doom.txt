@@ -1,0 +1,114 @@
+// p stands for Player. It defines base player attributes.
+//X Y Z angle
+p 8 0 0 0
+
+// Line format for total texture number:
+//tnum texture_number
+//Where texture_number is int.
+//EXAMPLE:
+tnum 8
+
+// Line format for texture paths:
+//t index texture_name
+//Where index is int and texture_name is string.
+//EXAMPLE:
+t 0 wall1.png
+t 1 door.png
+t 2 wall3.png
+t 3 translocation.png
+t 4 floor.png
+t 5 ceiling.png
+//t 6 0xFFF0FF
+t 6 wall4.png
+t 7 wall2.png
+
+// Line format for floor texture:
+//tflr texture_index
+//Where texture_number is int.
+tflr 4
+
+// Line format for ceiling texture:
+//tcel texture_index
+//Where texture_number is int.
+tcel 5
+
+// wnum stands for wall number. It defines total number of walls.
+wnum 70
+
+// w stands for Wall. It defines wall properties.
+//x1 y1 x2 y2 texture_index
+w 0 3 0 3 3
+w 0 3 0 -2 1
+w 0 -2 0 -2 3
+w 0 -2 0 -4 0
+w 0 -4 5 -7 0
+w 5 8 0 5 0
+w 0 5 0 3 0
+w 5 -7 5 -9 0
+w 5 -9 10 -9 0
+w 10 10 5 10 0
+w 5 10 5 8 0
+w 26 -9 28 -6 0
+w 28 -6 28 5 0
+w 28 10 10 10 0
+w 11 -6 11 -4 2
+w 11 -4 13 -4 2
+w 13 -4 13 -6 2
+w 13 -6 11 -6 2
+w 11 7 13 7 2
+w 13 7 13 5 2
+w 13 5 11 5 2
+w 11 5 11 7 2
+w 22 -6 22 -4 2
+w 22 -4 24 -4 2
+w 24 -4 24 -6 2
+w 24 -6 22 -6 2
+w 22 7 24 7 2
+w 24 7 24 5 2
+w 24 5 22 5 2
+w 22 5 22 7 2
+w 10 -9 10 -10 0
+w 26 -10 26 -9 0
+w 10 -10 14 -13 0
+w 14 -13 15 -13 0
+w 21 -13 22 -13 0
+w 22 -13 26 -10 0
+w 15 -13 15 -14 3
+w 21 -14 21 -13 3
+w 15 -14 10 -14 0
+w 10 -14 8 -16 0
+w 8 -16 8 -23 0
+w 8 -23 10 -25 0
+w 10 -25 16 -25 0
+w 21 -25 27 -25 0
+w 27 -25 28 -23 0
+w 28 -23 28 -16 0
+w 28 -16 27 -14 0
+w 27 -14 21 -14 0
+w 13 -16 13 -18 6
+w 13 -18 11 -18 6
+w 11 -18 11 -16 6
+w 11 -16 13 -16 6
+w 25 -18 23 -18 6
+w 23 -18 23 -16 6
+w 23 -16 25 -16 6
+w 25 -16 25 -18 6
+w 16 -25 16 -27 3
+w 21 -27 21 -25 3
+w 16 -27 14 -29 7
+w 14 -29 14 -36 7
+w 14 -36 23 -36 7
+w 23 -36 23 -29 7
+w 23 -29 21 -27 7
+w 28 5 36 5 0
+w 36 10 28 10 0
+w 36 5 47 9 0
+w 47 14 36 10 0
+w 47 9 49 9 3
+w 49 9 49 14 1
+w 49 14 47 14 3
+119 24 0
+w 119 37 90 25 0
+w 119 24 122 24 0
+w 122 24 122 37 0
+w 122 37 119 37 0

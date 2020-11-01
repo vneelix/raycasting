@@ -6,17 +6,29 @@
 /*   By: vneelix <vneelix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/06 20:08:31 by vneelix           #+#    #+#             */
-/*   Updated: 2020/10/26 19:12:39 by vneelix          ###   ########.fr       */
+/*   Updated: 2020/10/29 23:49:27 by vneelix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int	texture_load(t_storage *texture_storage)
+int			surface_load(SDL_Surface **dest, const char *path, Uint32 format)
+{
+	SDL_Surface *temp;
+
+	if ((temp = IMG_Load(path)) == NULL)
+		return (-1);
+	*dest = SDL_ConvertSurfaceFormat(temp, format, 0);
+	SDL_FreeSurface(temp);
+	if (*dest == NULL)
+		return (-1);
+	return (0);
+}
+
+static int	texture_load(t_storage *texture_storage)
 {
 	uint32_t	i;
 	char		*path;
-	SDL_Surface	*temp;
 
 	i = 0;
 	if ((texture_storage->data = ft_memalloc(
@@ -27,21 +39,19 @@ int	texture_load(t_storage *texture_storage)
 		if ((path = ft_strjoin("materials/textures/",
 						texture_storage->title[i])) == NULL)
 			return (-1);
-		temp = IMG_Load(path);
-		free((void*)path);
-		if (temp != NULL)
+		if (surface_load(&((t_texture*)texture_storage->data)[i].sfe,
+											path, SDL_PIXELFORMAT_BGRA32))
 		{
-			((t_texture*)texture_storage->data)[i].sfe =
-				SDL_ConvertSurfaceFormat(temp, SDL_PIXELFORMAT_BGRA32, 0);
-			SDL_FreeSurface(temp);
-		}
-		if (((t_texture*)texture_storage->data)[i++].sfe == NULL)
+			free(path);
 			return (-1);
+		}
+		free(path);
+		i += 1;
 	}
 	return (0);
 }
 
-int	texture_init(t_engine *engine)
+static int	texture_init(t_engine *engine)
 {
 	uint32_t	i;
 
@@ -64,9 +74,12 @@ int	texture_init(t_engine *engine)
 	return (0);
 }
 
-int	material_init(t_engine *engine)
+int			material_init(t_engine *engine)
 {
 	if (texture_init(engine) == -1)
 		return (-1);
+	if (engine->nswe)
+		if (remove_it_nswe_init(engine))
+			return (-1);
 	return (0);
 }

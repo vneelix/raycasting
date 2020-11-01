@@ -1,0 +1,131 @@
+// p stands for Player. It defines base player attributes.
+//X Y Z angle
+p 2 2 0 0
+
+// Line format for total texture number:
+//tnum texture_number
+//Where texture_number is int.
+//EXAMPLE:
+tnum 11
+
+// Line format for texture paths:
+//t index texture_name
+//Where index is int and texture_name is string.
+//EXAMPLE:
+t 0 wolf_blue_wall.png
+t 1 wolf_cell.png
+t 2 wolf_door.png
+t 3 0x444444
+t 4 0x444444
+t 5 wolf_stone_wall.png
+t 6 wolf_hitler.png
+t 7 wolf_fashik.png
+t 8 wolf_stone_bird.png
+t 9 wolf_bird.png
+t 10 wolf_blue_wall.png
+
+// Line format for floor texture:
+//tflr texture_index
+//Where texture_number is int.
+tflr 3
+
+// Line format for ceiling texture:
+//tcel texture_index
+//Where texture_number is int.
+tcel 4
+
+// wnum stands for wall number. It defines total number of walls.
+wnum 90
+
+// w stands for Wall. It defines wall properties.
+//x1 y1 x2 y2 texture_index
+w 0 -6 8 -6 0
+w 8 -6 8 -2 0
+w 8 0 8 4 0
+w 8 4 0 4 0
+w 0 4 0 -6 0
+w 14 26 0 26 1
+w 0 26 0 18 0
+w 0 18 10 18 0
+w 10 18 10 16 0
+w 10 16 10 12 0
+w 10 12 8 12 2
+w 8 12 8 16 0
+w 8 16 0 16 0
+w 0 16 0 6 0
+w 0 6 8 6 0
+w 8 6 8 10 0
+w 8 10 10 10 2
+w 10 10 10 0 0
+w 10 -2 10 -6 0
+w 10 -6 12 -6 0
+w 10 0 8 0 2
+w 8 -2 10 -2 2
+w 14 -6 16 -6 0
+w 16 -6 16 -2 0
+w 16 -2 18 -2 2
+w 18 -2 18 -6 0
+w 18 -6 26 -6 0
+w 26 -6 26 4 0
+w 26 4 18 4 0
+w 18 4 18 0 0
+w 18 0 16 0 2
+w 16 0 16 10 0
+w 16 10 18 10 2
+w 18 10 18 6 0
+w 18 6 26 6 0
+w 26 6 26 16 0
+w 26 16 18 16 0
+w 18 16 18 12 0
+w 18 12 16 12 2
+w 16 12 16 18 0
+w 16 18 26 18 0
+w 26 18 26 26 0
+w 26 26 14 26 1
+w 12 -8 10 -8 0
+w 10 -8 10 -32 0
+w 10 -32 12 -32 0
+w 14 -32 16 -32 0
+w 16 -32 16 -8 0
+w 16 -8 14 -8 0
+w 14 -8 14 -6 2
+w 12 -6 12 -8 2
+w 12 -32 12 -34 2
+w 14 -34 14 -32 2
+w 12 -34 8 -34 0
+w 8 -34 8 -36 5
+w 8 -36 0 -36 5
+w 0 -36 -2 -36 6
+w -2 -36 -6 -36 5
+w -6 -36 -6 -38 5
+w -6 -38 -6 -40 9
+w -6 -40 -6 -55 5
+w -6 -55 -6 -57 9
+w -6 -57 -6 -59 5
+w -6 -59 4 -59 5
+w 4 -59 6 -59 8
+w 6 -59 8 -59 5
+w 8 -59 8 -61 5
+w 8 -61 12 -61 10
+w 12 -61 14 -61 2
+w 14 -61 18 -61 10
+w 18 -61 18 -59 5
+w 18 -59 20 -59 5
+w 20 -59 22 -59 8
+w 22 -59 32 -59 5
+w 32 -59 32 -57 5
+w 32 -57 32 -55 7
+w 32 -55 32 -53 5
+w 32 -53 34 -53 5
+w 34 -53 34 -49 0
+w 34 -49 34 -47 2
+w 34 -47 34 -43 0
+w 34 -43 32 -43 5
+w 32 -43 32 -40 5
+w 32 -40 32 -38 7
+w 32 -38 32 -36 5
+w 32 -36 28 -36 5
+w 28 -36 26 -36 6
+w 26 -36 18 -36 5
+w 18 -36 18 -34 5
+w 18 -34 14 -34 0

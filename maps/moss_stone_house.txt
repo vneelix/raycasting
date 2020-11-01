@@ -1,0 +1,48 @@
+// p stands for Player. It defines base player attributes.
+//X Y Z angle
+p 0 0 0 0
+
+// Line format for total texture number:
+//tnum texture_number.
+//Where texture_number is int.
+//EXAMPLE:
+tnum 1
+
+// Line format for texture paths:
+//t index texture_name.
+//Where index is int and texture_name is string.
+//EXAMPLE:
+t 0 moss_stone_brick.png
+
+// Line format for floor texture:
+//tflr texture_index
+//Where texture_number is int.
+tflr 0
+
+// Line format for ceiling texture:
+//tcel texture_index
+//Where texture_number is int.
+tcel 0
+
+// wnum stands for wall number. It defines total number of walls.
+wnum 17
+
+// w stands for Wall. It defines wall properties.
+//x1 y1 x2 y2 texture_index.
+w -5 5 -5 -5 0
+w -5 5 5 5 0
+w -5 -5 5 -5 0
+w 5 5 5 2 0
+w 5 -5 5 -2 0
+w 5 2 10 2 0
+w 5 -2 10 -2 0
+w 10 2 14 6 0
+w 10 -2 14 -6 0
+w 14 6 18 6 0
+w 14 -6 18 -6 0
+w 18 6 18 0 0
+w 18 0 18 -6 0
+w 14 -2 16 -2 0
+w 14 -4 16 -4 0
+w 14 -4 14 -2 0
+w 16 -4 16 -2 0
