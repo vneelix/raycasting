@@ -6,7 +6,7 @@
 /*   By: vneelix <vneelix@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/24 16:29:26 by vneelix           #+#    #+#             */
-/*   Updated: 2020/10/30 15:04:53 by vneelix          ###   ########.fr       */
+/*   Updated: 2020/11/05 17:32:46 by vneelix          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ t_double2		line_line_intersect(t_double2 a, t_double2 b,
 		coeff_matrix[0] * a.x + coeff_matrix[1] * a.y,
 		coeff_matrix[2] * c.x + coeff_matrix[3] * c.y
 	};
-	determinant = 1. / (coeff_matrix[0] * coeff_matrix[3]
-							- coeff_matrix[1] * coeff_matrix[2]);
+	determinant = coeff_matrix[0] * coeff_matrix[3]
+					- coeff_matrix[1] * coeff_matrix[2];
 	if (determinant != 0.)
 	{
+		determinant = 1. / determinant;
 		return ((t_double2){
 			(coeff_matrix[3] * local_matrix[0]
 				- coeff_matrix[1] * local_matrix[1]) * determinant,
